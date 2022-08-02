@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HomesService } from '../homes.service';
+import { Home } from '../home.model';
 
 @Component({
   selector: 'app-home-search-page',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-search-page.component.css']
 })
 export class HomeSearchPageComponent implements OnInit {
-
-  constructor() { }
+  homes: Home[] = [];
+  constructor(private homesService:HomesService) {}
 
   ngOnInit(): void {
+    this.homesService.
   }
 
+  //gets list of homes
+  doSearch() {
+
+  }
 }
