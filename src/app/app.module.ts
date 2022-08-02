@@ -8,6 +8,7 @@ import { HomeSearchPageComponent } from './home-search-page/home-search-page.com
 import { SupportSearchPageComponent } from './support-search-page/support-search-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
