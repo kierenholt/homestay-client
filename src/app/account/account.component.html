@@ -1,0 +1,34 @@
+
+<h3>Change password</h3>
+<form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Old password" formControlName="oldPassword">
+      <mat-error
+        *ngIf="this.changePasswordForm.get('oldPassword')?.touched && this.changePasswordForm.get('oldPassword')?.hasError('required')">
+        Password is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="password" matInput placeholder="New password" formControlName="newPassword1">
+        <mat-error
+          *ngIf="this.changePasswordForm.get('newPassword1')?.touched && this.changePasswordForm.get('newPassword1')?.hasError('required')">
+          Password is required</mat-error>
+      </mat-form-field>
+      
+    <mat-form-field>
+        <input type="password" matInput placeholder="New password (again)" formControlName="newPassword2">
+        <mat-error
+          *ngIf="this.changePasswordForm.get('newPassword2')?.touched && this.changePasswordForm.get('newPassword2')?.hasError('required')">
+          Password is required</mat-error>
+      </mat-form-field>
+    <div class="button" color="primary">
+      <!-- Button is disabled(not clickable), if our registerForm contains Validation Errors -->
+      <button type="submit" mat-button [disabled]="!changePasswordForm.valid">Change password</button>
+    </div>
+
+  </form>
+
+<h3>Delete account</h3>
+
+<button (click)="deleteAccount()" mat-button>DELETE MY ACCOUNT</button>

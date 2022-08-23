@@ -68,7 +68,8 @@
               "browserTarget": "homestay-client:build:production"
             },
             "development": {
-              "browserTarget": "homestay-client:build:development"
+              "browserTarget": "homestay-client:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -99,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

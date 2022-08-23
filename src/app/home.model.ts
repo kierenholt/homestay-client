@@ -1,6 +1,8 @@
 export interface Home {
     city: string;
-    hasKids: boolean;
-    isMusician: boolean;
-    beds: number; 
+    hasKids: number;
+    isMusician: number;
+    numBeds: number; 
+    //imageUrl: string;
+    id: number
 }

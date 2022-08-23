@@ -1,0 +1,42 @@
+
+
+<h2>Filters</h2>
+<!---DROPDOWN FILTERS TO TAKE UP LESS SPACE--->
+<!---num beds--->
+<mat-expansion-panel>
+  <mat-expansion-panel-header><h3>Beds</h3></mat-expansion-panel-header>
+  <mat-checkbox [checked]="oneBed" (change)="oneBed = !oneBed">1 bed</mat-checkbox>
+  <mat-checkbox [checked]="twoBeds" (change)="twoBeds = !twoBeds">2 beds</mat-checkbox>
+  <mat-checkbox [checked]="threeBeds" (change)="threeBeds = !threeBeds">3+ beds</mat-checkbox>
+</mat-expansion-panel>
+<!---musician--->
+<mat-expansion-panel>
+  <mat-expansion-panel-header><h3>Values</h3></mat-expansion-panel-header>
+  <mat-checkbox [checked]="musicianOnly" (change)="musicianOnly = !musicianOnly">Musicians only</mat-checkbox>
+</mat-expansion-panel>
+
+<!---apply filter-->
+<button mat-flat-button (click)="doSearch()" color="primary">Search</button>
+<button mat-flat-button (click)="clear()" color="accent">Clear filters</button>
+
+<h2>Results</h2>
+<mat-list>
+  <mat-list-item *ngFor="let home of homes">
+    
+    <mat-icon matListIcon>home</mat-icon>
+    <!---<img matListAvatar [src]="home.imageUrl" alt="...">--->
+      <h3 class="intent-right" matLine> {{home.city}} </h3>
+      <p class="intent-right"  matLine>
+        <span> {{home.numBeds}} beds </span>
+        <span *ngIf="home.isMusician" class="demo-2"> 🎵 Musician </span>
+      </p>
+    <button mat-flat-button (click)="{}" color="primary">Send message</button>
+  </mat-list-item>
+
+  
+  <mat-list-item *ngIf="homes.length > 0">
+    <button mat-flat-button (click)="nextPage()" color="primary">Get more results</button>
+  </mat-list-item>
+
+</mat-list>
+

@@ -1,0 +1,52 @@
+<h3>Offer accomodation to a refugee</h3>
+<p>Complete the form below to add your home to the <a routerLink="/search/homes">database</a><br> 
+    Refugees will be able to view this information and then contact you to arrange a stay.   
+    </p>
+
+
+    
+<form [formGroup]="offerForm" (ngSubmit)="offer()">
+
+    <mat-form-field>
+      <input matInput type="text" matInput placeholder="City" formControlName="city">
+      <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
+       with the .touched check we only display the hints if the input was touched by the users -->
+      <mat-error *ngIf="this.offerForm.get('city')?.touched && this.offerForm.get('city')?.hasError('required')">
+       City is required</mat-error>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Do children live there?</mat-label>
+        <mat-select required  formControlName="hasKids">
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="0">No</mat-option>
+        </mat-select>
+        <mat-error *ngIf="this.offerForm.get('hasKids')?.hasError('required')">You must make a selection</mat-error>
+    </mat-form-field>
+    
+    <br>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Are you a musician / connected to musicians?</mat-label>
+        <mat-select required formControlName="isMusician">
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="0">No</mat-option>
+        </mat-select>
+        <mat-error *ngIf="this.offerForm.get('isMusician')?.hasError('required')">You must make a selection</mat-error>
+    </mat-form-field>
+  
+    <br>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>How many beds are available?</mat-label>
+        <input matInput type="number" required formControlName="numBeds"/>
+        <mat-error *ngIf="this.offerForm.get('numBeds')?.hasError('required')">You must make a selection</mat-error>
+    </mat-form-field>
+
+    <div class="button" color="primary">
+      <!-- Button is disabled(not clickable), if our offerForm contains Validation Errors -->
+      <button type="submit" mat-button [disabled]="!offerForm.valid">Offer my home</button>
+    </div>
+
+  </form>

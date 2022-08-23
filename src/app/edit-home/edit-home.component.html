@@ -1,0 +1,44 @@
+<mat-card *ngFor="let home of homes"> 
+
+    
+    <form>
+
+        <mat-form-field>
+            <mat-label>City</mat-label>
+          <input matInput type="text" matInput [(ngModel)]="home.city" name="city">
+        </mat-form-field>
+        <br><br>
+        
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Do children live there?</mat-label>
+            <select matNativeControl required (change)="changeKids($event,home)">
+              <option [selected]="home.hasKids == 1" value="1">Yes</option>
+              <option [selected]="home.hasKids == 0" value="0">No</option>
+            </select>
+        </mat-form-field>
+<br><br>
+
+<mat-form-field appearance="fill">
+  <mat-label>Are you a musician / connected to musicians?</mat-label>
+  <select matNativeControl required (change)="changeMusician($event,home)">
+    <option [selected]="home.isMusician == 1" value="1">Yes</option>
+    <option [selected]="home.isMusician == 0" value="0">No</option>
+  </select>
+</mat-form-field>
+        <br><br>
+
+
+        <mat-form-field>
+            <mat-label>Number of beds</mat-label>
+          <input matInput type="number" matInput [(ngModel)]="home.numBeds" name="numBeds">
+        </mat-form-field>
+        <br><br>
+
+        <button mat-button  color="primary" (click)="update(home)">Save changes</button>
+        <button mat-button  color="accent" (click)="delete(home)">Delete home</button>
+
+        <br>
+    </form>
+
+</mat-card>

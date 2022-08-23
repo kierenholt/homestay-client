@@ -1,0 +1,47 @@
+<mat-toolbar>
+
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+        menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+        close
+    </mat-icon>
+</button>
+Refugee
+  </mat-toolbar>
+  
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav="matSidenav"  mode="side" opened>
+      
+      <br><br>
+      <!---icon list https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/ -->
+      <button routerLink="homes" mat-button class="menu-button">
+          <mat-icon>home</mat-icon>
+          <span>Search UK accomodation</span>
+      </button>
+      <br><br>
+      
+      <!---
+      <button routerLink="services" mat-button class="menu-button">
+          <mat-icon>local_activity</mat-icon>
+          <span>Search community services and events</span>
+      </button>
+      <br><br>-->
+      
+      <button mat-button class="menu-button" routerLink="/">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Back</span>
+      </button>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+
+
+  </mat-sidenav-container>
+  
