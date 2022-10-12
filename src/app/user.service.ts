@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Home } from './home.model';
 import {User, userCredentials} from './user.model'
 
@@ -20,7 +21,7 @@ export class UserService {
   }
 
   login(userCredentials: userCredentials) {
-    return this.http.post<User>('/api/authenticate?',userCredentials).subscribe(
+    return this.http.post<User>(environment.serverUrl + '/authenticate?',userCredentials).subscribe(
       value => {
          if (value) 
          { 
@@ -38,7 +39,8 @@ export class UserService {
 
   
   register(userCredentials: userCredentials) {
-    return this.http.post<User>('/api/register',userCredentials).subscribe(
+    console.log(environment.serverUrl + '/register');
+    return this.http.post<User>(environment.serverUrl + '/register',userCredentials).subscribe(
       value => {
          if (value) 
          { 
@@ -51,7 +53,7 @@ export class UserService {
           this.authenticatedUserObservable.next(null);
           }
     }, 
-    (error) => alert("register unsuccessful")
+    (error) => alert(JSON.stringify(error))
     );
   }
 
@@ -59,7 +61,7 @@ export class UserService {
   
   delete() {
     if (this.authenticatedUser) {
-      return this.http.delete<User>('/api/user/' + this.authenticatedUser.id).subscribe(
+      return this.http.delete<User>(environment.serverUrl + '/user/' + this.authenticatedUser.id).subscribe(
         value =>  {
           if (value) {
             this.authenticatedUser = null;
@@ -80,7 +82,7 @@ export class UserService {
     if (this.authenticatedUser) {
       let userCopy: any = {...this.authenticatedUser};
       userCopy["newPassword"] = newPassword;
-      return this.http.post<User>('/api/user/' + this.authenticatedUser.id + '/changePassword',userCopy);
+      return this.http.post<User>(environment.serverUrl + '/user/' + this.authenticatedUser.id + '/changePassword',userCopy);
     }
     else {
       return new Observable(
@@ -92,7 +94,7 @@ export class UserService {
 
   getHomesOfUserObservable(): Observable<Home[]> {
     if (this.authenticatedUser) {
-      return this.http.get<Home[]>('/api/user/' + this.authenticatedUser.id + '/homes');
+      return this.http.get<Home[]>(environment.serverUrl + '/user/' + this.authenticatedUser.id + '/homes');
     }
     else {
       return new Observable(
@@ -104,7 +106,7 @@ export class UserService {
   
   updateHomeOfUserObservable(home: Home): any {
     if (this.authenticatedUser) {
-      return this.http.patch<Home>('/api/home/' + home.id, home);
+      return this.http.patch<Home>(environment.serverUrl + '/home/' + home.id, home);
     }
     else {
       return new Observable(
@@ -116,7 +118,7 @@ export class UserService {
   
   deleteHomeOfUserObservable(home: Home): any {
     if (this.authenticatedUser) {
-      return this.http.delete<Home>('/api/home/' + home.id);
+      return this.http.delete<Home>(environment.serverUrl + '/home/' + home.id);
     }
     else {
       return new Observable(

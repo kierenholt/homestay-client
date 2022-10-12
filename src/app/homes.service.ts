@@ -4,6 +4,7 @@ import { catchError, filter, Observable, Subscriber } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { stringify } from 'query-string';
 import { UserService } from './user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class HomesService {
   }
 
   getCreateHomeObservable(home: Home) {
-    return this.client.post<Home>('/api/home',home);
+    return this.client.post<Home>(environment.serverUrl + '/home',home);
   }
 
   getHomesObservable(queryObj: any) {
 
-    return this.client.get<Home[]>('/api/homes?' + stringify(queryObj));
+    return this.client.get<Home[]>(environment.serverUrl + '/homes?' + stringify(queryObj));
     
     /*.subscribe(
       (response) => console.log(response),

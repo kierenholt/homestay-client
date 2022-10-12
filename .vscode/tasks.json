@@ -37,6 +37,14 @@
           }
         }
       }
+    },
+    {
+        "label": "python_server",
+        "type": "shell",
+        "command": "cd dist/homestay-client&&python3 -m http.server 8000",
+        "args": [],
+        "group": "build",
+        "problemMatcher": []
     }
   ]
 }
